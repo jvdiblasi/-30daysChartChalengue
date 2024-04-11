@@ -1,4 +1,4 @@
-#30DayChartChallenge
+#30DaysChartChallenge
 
 rm(list=ls()) #limpiamos el envairoment
 library(ggplot2)
