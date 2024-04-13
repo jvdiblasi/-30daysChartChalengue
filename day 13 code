@@ -1,0 +1,24 @@
+#Day 13 Physics || Family
+
+rm(list=ls()) #clean the envaironment
+
+library(ggplot2)
+library(ggthemes)
+library(readr)
+df <- read_delim("G:/Mi unidad/+++/#30DayChartChallenge 2024/OECD_Maternal_Employment.csv", 
+                 delim = ";", escape_double = FALSE, col_types = cols(Year = col_datetime(format = "%Y"), 
+                                                                      `%` = col_number()), trim_ws = TRUE)
+View(df)
+
+ggplot(df) +
+  aes(x = Year,y=Porc.) + 
+  geom_line(color="#B22222", size=1) +
+  labs(
+    x="",
+    y = "%",
+    title = "Women (15-64) with at least one child 0-14",
+    subtitle = "Source: https://www.oecd.org/els/family/database.htm",
+    caption="#30dayChartChallenge  | #Day13 | Family"
+  ) +
+  geom_point(color="#B22222", size=2)+
+  theme_economist()
