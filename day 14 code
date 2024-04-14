@@ -1,0 +1,72 @@
+rm(list=ls()) #clean the envaironment
+
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(esquisse)
+df=read_csv("G:/Mi unidad/+++/#30DayChartChallenge 2024/day14data_LRFA19.csv", 
+                           col_types = cols(organismo = col_character(), 
+                                              `poblacion_servida` = col_number()))
+# forma 1                                        
+day14.1=
+  ggplot(df) +
+  aes(
+    x = ejercicio,
+    y=reorder(organismo,desc(organismo)),
+    fill = poblacion_servida,
+    colour = poblacion_servida,
+    size = poblacion_servida) +
+  
+  geom_point(shape = "circle") +
+  
+  scale_fill_distiller(palette = "YlOrRd", direction = 1) +
+  
+  scale_color_distiller(palette = "YlOrRd", direction = 1) +
+  
+  labs(
+    x = "año",
+    y = "municipio",
+    title = "Población Servida - Municipios de Mendoza",
+    subtitle="población estimada / agentes municipales",
+    caption = "#30dayChartChallenge  | #Day14 | Heatmap",) +
+  
+  theme_minimal() +
+  
+  theme(legend.position = "right") +
+  
+  scale_x_continuous(breaks = seq(2009, 2022, by = 1))+ #establece la secuencia
+  
+  guides(x = guide_axis(angle = 45)) #gira la escala 45°
+
+day14.1
+
+#forma 2
+
+day14.2=  
+ggplot(df) +  # Create heatmap with ggplot2
+  aes(
+    x = ejercicio,
+    y=reorder(organismo,desc(organismo)),
+    fill = poblacion_servida,
+    colour = poblacion_servida)+
+  
+  geom_tile(aes(fill = poblacion_servida))+
+  
+  scale_fill_distiller(palette = "YlOrRd", direction = 1) +
+  
+  scale_color_distiller(palette = "YlOrRd", direction = 1) +
+  
+  labs(
+    x = "año",
+    y = "municipio",
+    title = "Población Servida - Municipios de Mendoza",
+    subtitle="población estimada / agentes municipales",
+  caption = "#30dayChartChallenge  | #Day14 | Heatmap",)+
+  
+  theme(legend.position = "right") +
+  
+  scale_x_continuous(breaks = seq(2009, 2022, by = 1))+ #establece la secuencia
+  
+  guides(x = guide_axis(angle = 45))
+
+day14.2
